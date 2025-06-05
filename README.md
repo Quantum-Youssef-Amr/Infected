@@ -11,7 +11,7 @@
 ## 🛠️ Built With
 
 - **Engine**: Unity, Pixelorama v1.0.5
-- **Language**: C#, SLHL  
+- **Language**: C#, HLSL  
 - **Frameworks/Libraries**: singleton structure
 
 ## 🧪 Gameplay
