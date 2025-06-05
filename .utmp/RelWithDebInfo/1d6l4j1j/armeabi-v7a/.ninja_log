@@ -1,0 +1,23 @@
+# ninja log v5
+16	1859	7621983090207616	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	871f2c81fc55cbd9
+8	1988	7621983091276958	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	d7eeed04e3d79b2b
+13	1993	7621983091386872	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	b5420105f6504c3d
+1862	3394	7621983105685666	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	193e67c2150d6cf1
+1	2328	7621983094695646	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	10add306c74969e5
+1993	2350	7621983095145902	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	195b6fb8fedea8e4
+4	2771	7621983099476403	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	76fd51936e31e65f
+10	2639	7621983098087125	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	f2acbb5786cf0798
+2351	2754	7621983099276533	C:/UProjects/Virus invasion/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/1d6l4j1j/obj/armeabi-v7a/libswappywrapper.so	562aaf96c77f3ba4
+1988	3510	7621983106850109	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	4f47c4fa3a733da1
+3510	3643	7621983108128330	C:/UProjects/Virus invasion/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/1d6l4j1j/obj/armeabi-v7a/libgame.so	828fab6a8d099cf6
+5	1944	7622159329826137	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	b5420105f6504c3d
+23	2014	7622159330446628	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	871f2c81fc55cbd9
+10	2019	7622159330522318	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	d7eeed04e3d79b2b
+20	2093	7622159330917299	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	193e67c2150d6cf1
+15	2268	7622159333115300	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	10add306c74969e5
+2019	2278	7622159333211044	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	195b6fb8fedea8e4
+2279	2407	7622159334506430	C:/UProjects/Virus invasion/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/1d6l4j1j/obj/armeabi-v7a/libswappywrapper.so	562aaf96c77f3ba4
+13	2755	7622159337968345	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	76fd51936e31e65f
+2014	3450	7622159344917932	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	4f47c4fa3a733da1
+1945	3717	7622159347632359	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	f2acbb5786cf0798
+3717	3842	7622159348817642	C:/UProjects/Virus invasion/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/1d6l4j1j/obj/armeabi-v7a/libgame.so	828fab6a8d099cf6
