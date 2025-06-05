@@ -1,0 +1,1 @@
+C:\UProjects\Infected\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\1222456j\obj\armeabi-v7a

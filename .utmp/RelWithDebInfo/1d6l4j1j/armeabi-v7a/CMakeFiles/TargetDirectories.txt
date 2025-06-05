@@ -1,8 +1,0 @@
-C:/UProjects/Virus invasion/.utmp/RelWithDebInfo/1d6l4j1j/armeabi-v7a/CMakeFiles/edit_cache.dir
-C:/UProjects/Virus invasion/.utmp/RelWithDebInfo/1d6l4j1j/armeabi-v7a/CMakeFiles/rebuild_cache.dir
-C:/UProjects/Virus invasion/.utmp/RelWithDebInfo/1d6l4j1j/armeabi-v7a/GameActivity/CMakeFiles/game.dir
-C:/UProjects/Virus invasion/.utmp/RelWithDebInfo/1d6l4j1j/armeabi-v7a/GameActivity/CMakeFiles/edit_cache.dir
-C:/UProjects/Virus invasion/.utmp/RelWithDebInfo/1d6l4j1j/armeabi-v7a/GameActivity/CMakeFiles/rebuild_cache.dir
-C:/UProjects/Virus invasion/.utmp/RelWithDebInfo/1d6l4j1j/armeabi-v7a/FramePacing/CMakeFiles/swappywrapper.dir
-C:/UProjects/Virus invasion/.utmp/RelWithDebInfo/1d6l4j1j/armeabi-v7a/FramePacing/CMakeFiles/edit_cache.dir
-C:/UProjects/Virus invasion/.utmp/RelWithDebInfo/1d6l4j1j/armeabi-v7a/FramePacing/CMakeFiles/rebuild_cache.dir
