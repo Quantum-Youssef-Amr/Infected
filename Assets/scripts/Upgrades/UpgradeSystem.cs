@@ -27,6 +27,7 @@ public class UpgradeSystem : MonoBehaviour
         _pg = player.GetComponent<shooting>();
         _pm = player.GetComponent<PlayerMovement>();
         _bd = bult.GetComponent<bult>();
+        GameObject.FindGameObjectWithTag("discriptaion").GetComponent<TextMeshProUGUI>().text = "";
     }
 
 
@@ -48,7 +49,6 @@ public class UpgradeSystem : MonoBehaviour
         }
 
         _selectedcards.Clear();
-        GameObject.FindGameObjectWithTag("discriptaion").GetComponent<TextMeshProUGUI>().text = "";
 
         for (int i = 0; i < CardNum; i++)
         {

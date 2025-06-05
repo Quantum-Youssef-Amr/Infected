@@ -2405,7 +2405,6 @@ GameObject:
   - component: {fileID: 962248758}
   - component: {fileID: 962248762}
   - component: {fileID: 962248763}
-  - component: {fileID: 962248764}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2553,19 +2552,6 @@ MonoBehaviour:
   PlayerHealth: {fileID: 428464333}
   DeathParticals: {fileID: 7533258010513669180, guid: fb8ab19325f706a4c91e5a88cfcbca1f, type: 3}
   d2: {fileID: 6612391974241783494, guid: bd513686895f22344af98e88bd9577a0, type: 3}
-  div: {fileID: 0}
---- !u!114 &962248764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 962248757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 525168a3590ae884a85ba38c3d23e002, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &995285670
 GameObject:
   m_ObjectHideFlags: 0

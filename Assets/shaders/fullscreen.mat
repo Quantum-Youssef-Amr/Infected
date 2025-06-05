@@ -54,7 +54,7 @@ Material:
     - _larg_lines_num: 1
     - _larg_lines_speed: 0.05
     - _lines: 100
-    - _offset: 0.2
+    - _offset: 0
     - _power: 4.68
     - _small_lines_num: 10
     - _small_lines_speed: 0.02

@@ -7,7 +7,6 @@ public class pause : MonoBehaviour
     [SerializeField] private GameObject PauseMenu, gameOver;
     [SerializeField] private playerHealth PlayerHealth;
     [SerializeField] private GameObject DeathParticals, d2;
-    [SerializeField] private GameObject div;
     private bool dead;
     
     private void Update()
