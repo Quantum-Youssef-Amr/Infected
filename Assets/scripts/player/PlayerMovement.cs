@@ -29,16 +29,12 @@ public class PlayerMovement : MonoBehaviour
 
     float _cangel;
     private void RotatePlayer(Vector2 vec){
-        if(Vector2.Dot(_t.up.normalized, vec.normalized) <= 0.999){
+        if(vec == Vector2.zero) return;
+        if(Vector2.Dot(_t.up.normalized, vec.normalized) <= 0.9999){
             _cangel += Mathf.Sign(Vector2.SignedAngle(_t.up, vec)) * TurningSpeed;
             _t.rotation = Quaternion.Euler(0,0, _cangel);
+        }else{
+            _t.rotation = Quaternion.Euler(0,0,Vector2.SignedAngle(Vector2.up, vec));
         }
-    }
-
-    // for movements in the future -^\(-_-)/^-
-    private Vector2 getInput(){
-        float x_axis = (Input.GetKey(KeyCode.D) ? 1:0) - (Input.GetKey(KeyCode.A) ? 1:0);
-        float y_axis = (Input.GetKey(KeyCode.W) ? 1:0) - (Input.GetKey(KeyCode.S) ? 1:0);
-        return new Vector2(x_axis, y_axis).normalized;
     }
 }

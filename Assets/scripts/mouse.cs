@@ -27,7 +27,7 @@ public class mouse : MonoBehaviour
     {
         if (Application.isMobilePlatform)
         {
-            _t.position = _pt.transform.up * 3;
+            _t.position = _pt.transform.up * (_main.orthographicSize/3);
             Image.sprite = sprites[0];
             gameObject.SetActive(!PublicData.gameover || !PublicData.pause || !PublicData.upgradeing);
             gameObject.transform.SetSiblingIndex(1);

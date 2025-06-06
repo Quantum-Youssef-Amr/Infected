@@ -56,7 +56,7 @@ public class Spowner : MonoBehaviour
     private int index;
     public void nextWave()
     {
-        Random.InitState((int)(Random.value * 1000000f));
+        Random.InitState(Random.Range(0,1000000));
 
         if (index != FObjects.Length)
         {

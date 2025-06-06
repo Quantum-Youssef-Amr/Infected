@@ -11,17 +11,10 @@ public class simpleMouse : MonoBehaviour
 
     void Start()
     {
-        if (Application.isMobilePlatform)
-        {
-            gameObject.SetActive(false);
-        }
-        else
-        {
-            gameObject.SetActive(true);
-        }
+        gameObject.SetActive(!Application.isMobilePlatform);
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
-
+        
         _t = transform;
         _main = Camera.main;
     }

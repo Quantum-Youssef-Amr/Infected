@@ -18,16 +18,16 @@ public class controler : MonoBehaviour, IPointerUpHandler, IDragHandler
 
     private void Start()
     {
-        if (Application.isMobilePlatform)
-            gameObject.SetActive(true);
-        else
-            gameObject.SetActive(false);
+        gameObject.SetActive(Application.isMobilePlatform);
     }
 
 
     private void Update()
     {
-        _control_size = ((Control.rect.size.x / 2) * Camera.main.orthographicSize / 5) / 100;
+        if(PublicData.pause || PublicData.gameover) return;
+        if(PublicData.upgradeing) {gameObject.SetActive(false); return;}
+
+        _control_size = ((Control.rect.size.x / 2) * (Camera.main.orthographicSize / 5)) / 100;
         UpdateVisuals();
         if (!_CanControl)
         {
@@ -43,7 +43,7 @@ public class controler : MonoBehaviour, IPointerUpHandler, IDragHandler
         if ((_calcVec.magnitude / _control_size) > DeadZone)
             vec = _calcVec;
         vecMag = vec.magnitude;
-        conMag = ControlNob.localPosition.magnitude / _control_size;
+        conMag = ControlNob.localPosition.magnitude / (Control.rect.size.x/2);
         vecAng = Vector2.SignedAngle(Vector2.up, vec);
     }
 
@@ -77,7 +77,6 @@ public class controler : MonoBehaviour, IPointerUpHandler, IDragHandler
         {
             TouchId = Input.GetTouch(i).position.magnitude < Input.GetTouch(TouchId).position.magnitude ? i : TouchId;
         }
-
 
         Vector2 t = Camera.main.ScreenToWorldPoint(Input.GetTouch(TouchId).position) - Control.position;
         if (t.magnitude < 5)

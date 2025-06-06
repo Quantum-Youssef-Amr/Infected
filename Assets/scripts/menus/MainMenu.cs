@@ -1,10 +1,7 @@
 using UnityEngine;
-using UnityEngine.Audio;
 using System.Collections;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using DG.Tweening;
-using NUnit.Framework.Constraints;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
@@ -12,15 +9,18 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Slider loading;
     [SerializeField] private ParticleSystem viruses;
     [SerializeField] private GameObject splashScren, gMainMenu, Options, cridets;
-    [SerializeField] private AudioSource powerup, musicSource;
-         
-    private AsyncOperation _sceneload;
+    [SerializeField] private AudioSource powerup;
+    [SerializeField] private TextMeshProUGUI version;
+    
+    private AudioSource _musicSource;
 
     private void Start()
     {
+        version.text = $"v{Application.version}";
+
         fullscreen.SetFloat("_offset", 0.2f);
         StartCoroutine(GameStart());
-        musicSource = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<AudioSource>();
+        _musicSource = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -83,7 +83,7 @@ public class MainMenu : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         splashScren.SetActive(false);
         viruses.Play();
-        musicSource.Play();
+        _musicSource.Play();
         yield return new WaitForSecondsRealtime(1f);
         gMainMenu.SetActive(true);
     }

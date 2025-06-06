@@ -6,26 +6,27 @@ using UnityEngine.SceneManagement;
 public class SingltonSceneManager : MonoBehaviour, IDataPersestant
 {
 
+    void Awake()
+    {
+        Application.targetFrameRate = 120;
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start()
     {
-       loadMainMenu();
+       MainMenu();
     }
 
     public void play(){
-        SceneManager.UnloadSceneAsync(1, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
-        AsyncOperation async = SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
+        AsyncOperation async = SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
         async.completed += updateVisuals;
     }
 
     public void MainMenu(){
-        SceneManager.UnloadSceneAsync(2, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
-        loadMainMenu();
-    }
-
-    private void loadMainMenu(){
-        AsyncOperation async = SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+        AsyncOperation async = SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
         async.completed += updateVisuals;
     }
+    
     private void updateVisuals(AsyncOperation operation){
         operation.allowSceneActivation = true;
         FindAnyObjectByType<Camera>().GetUniversalAdditionalCameraData().renderPostProcessing = PublicData.UseHighGraphics;

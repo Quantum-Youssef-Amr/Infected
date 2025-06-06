@@ -33,6 +33,7 @@ public class UpgradeSystem : MonoBehaviour
 
     public void ShowUpgrades()
     {
+        Random.InitState(Random.Range(0,1000000));
         if(CardNum == MaxCards)
             foreach(Card c in cards)
             {
@@ -55,12 +56,12 @@ public class UpgradeSystem : MonoBehaviour
             GameObject m_Card = Instantiate(UpgradeCard, UpgradeUi.transform);
             chooseCard();
 
-            while (_selectedcards.Contains(card.description))
-            {
-                chooseCard();
+            if(_selectedcards.Contains(card.name)){
+                i--;
+                continue;
             }
-
-            _selectedcards.Add(card.description);
+            
+            _selectedcards.Add(card.name);
 
             m_Card.transform.GetChild(0).GetComponent<Image>().sprite = card.image;
             m_Card.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = card.Title;

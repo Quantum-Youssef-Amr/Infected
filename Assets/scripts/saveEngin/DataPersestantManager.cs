@@ -16,6 +16,7 @@ public class DataPersestantManager : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         if (instace != null)
             Debug.LogError("found more then one Data Persestant Manager in the scene");
 

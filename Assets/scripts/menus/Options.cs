@@ -17,8 +17,7 @@ public class Options : MonoBehaviour
     {
         MusicSlider.value = PublicData.Music;
         SfxSlider.value = PublicData.Sfx;
-
-        Crt.isOn = CrtEffect.GetFloat("_UseLines") > 0 ? true : false;
+        Crt.isOn = PublicData.CrtEffect;
         HighGraphics.isOn = PublicData.UseHighGraphics;
     }
 
