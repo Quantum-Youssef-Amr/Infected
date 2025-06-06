@@ -36,7 +36,7 @@ public class shooting : MonoBehaviour
             
         if(co==null && _bolts_shoot >= boltsInRound) co = StartCoroutine(reload());
         if(Application.isMobilePlatform){
-            if(controler.conMag > 1f  && _bolts_shoot < boltsInRound){
+            if(controler.conMag > 0.9f  && _bolts_shoot < boltsInRound){
                 if(co == null) co = StartCoroutine(Shoot());
             }
         }else{
