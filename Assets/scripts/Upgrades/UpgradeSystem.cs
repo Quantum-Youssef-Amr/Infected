@@ -133,8 +133,8 @@ public class UpgradeSystem : MonoBehaviour
             case Card.power.PlayerSpeed:
                 switch (m_card.adder)
                 {
-                    case true: _pm.TurningSpeed -= m_card.amount;   break;
-                    case false: _pm.TurningSpeed /= m_card.amount;  break;
+                    case true: _pm.TurningSpeed += m_card.amount;   break;
+                    case false: _pm.TurningSpeed *= m_card.amount;  break;
                 }
                 break;
 

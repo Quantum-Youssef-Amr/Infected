@@ -9,6 +9,7 @@ public class controler : MonoBehaviour, IPointerUpHandler, IDragHandler
     [SerializeField] private float DeadZone = 0.6f;
 
     public static float vecAng, vecMag, conMag;
+    public static float _DeadZone {get; private set;}
     public static Vector2 vec;
 
     private Vector2 _calcVec;
@@ -19,6 +20,7 @@ public class controler : MonoBehaviour, IPointerUpHandler, IDragHandler
     private void Start()
     {
         gameObject.SetActive(Application.isMobilePlatform);
+        _DeadZone = DeadZone;
     }
 
 

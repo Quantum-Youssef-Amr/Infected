@@ -83,6 +83,7 @@ public class Spowner : MonoBehaviour
         m_spownLoc = Random.onUnitSphere;
         m_spownLoc.Normalize();
         m_spownLoc *= _cameraSize * (2 + ((float)Screen.height / Screen.width)) * SpawnRad;
+        m_spownLoc = new Vector2(m_spownLoc.x + Mathf.Sign(m_spownLoc.x)* (1980f/Screen.currentResolution.width), m_spownLoc.y + Mathf.Sign(m_spownLoc.y)* (1080f/Screen.currentResolution.height));
         
         Instantiate(objects[Random.Range(0, objects.Count)], m_spownLoc, Quaternion.identity);
     }
