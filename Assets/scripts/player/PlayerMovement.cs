@@ -1,4 +1,5 @@
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -27,27 +28,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    float m_angel;
-    Vector2 m_target;
     private void RotatePlayer(Vector2 vec){
-        // if no vec return (dot of vector.zero ruslts to contant rotation)
         if(vec == Vector2.zero) return;
         else vec = vec.normalized;
 
-        // if the target heading changed set the requird vars
-        if(m_target != vec) {
-            m_target = vec;
-            m_angel = _t.rotation.eulerAngles.z;
-        }
-
-        // until the player point to target rotate it in the diraction of it
-        // if there is a small margen -error (0.0001f)- just set the heading to the target
-        if(Vector2.Dot(m_target, _t.up) < 0.9999f){
-            m_angel += Mathf.Sign(Vector2.SignedAngle(_t.up, m_target)) * TurningSpeed * Time.deltaTime;
-            _t.rotation = Quaternion.Euler(0, 0, m_angel);    
-        }else{
-            _t.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.up, m_target));
-        }
-        
+        _t.rotation = Quaternion.RotateTowards(_t.rotation, Quaternion.Euler(0,0,Vector2.SignedAngle(Vector2.up, vec)), TurningSpeed * Time.deltaTime);;
     }
 }
