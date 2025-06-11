@@ -77,14 +77,15 @@ public class controler : MonoBehaviour, IPointerUpHandler, IDragHandler
     {
         for (int i = 0; i < Input.touchCount; i++)
         {
-            TouchId = Input.GetTouch(i).position.magnitude < Input.GetTouch(TouchId).position.magnitude ? i : TouchId;
+            if(Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position).x > 0){
+                TouchId = Input.GetTouch(i).position.magnitude < Input.GetTouch(TouchId).position.magnitude ? i : TouchId;
+            }
         }
 
         Vector2 t = Camera.main.ScreenToWorldPoint(Input.GetTouch(TouchId).position) - Control.position;
         if (t.magnitude < 5)
         {
             Control.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.GetTouch(TouchId).position);
-            print(t.magnitude);
         }
         
     }

@@ -35,19 +35,20 @@ public class shooting : MonoBehaviour
         prograss.value = pro;
             
         if(co==null && _bolts_shoot >= boltsInRound) co = StartCoroutine(reload());
-        if(Application.isMobilePlatform){
-            if(controler.conMag > 0.9f  && _bolts_shoot < boltsInRound){
-                if(co == null) co = StartCoroutine(Shoot());
-            }
-        }else{
-            if (Input.GetKey(KeyCode.Mouse0) && _bolts_shoot < boltsInRound)
+        if(!Application.isMobilePlatform){
+            if (Input.GetKey(KeyCode.Mouse0))
             {    
-                if(co == null) co = StartCoroutine(Shoot());
+                Fire();
             }
         }
     }
 
-    public IEnumerator Shoot()
+    public void Fire(){
+        if(_bolts_shoot >= boltsInRound) return;
+        if(co == null) co = StartCoroutine(Shoot());
+    }
+
+    private IEnumerator Shoot()
     {
         if(_canshoot && !PublicData.upgradeing)
         {
@@ -61,7 +62,7 @@ public class shooting : MonoBehaviour
         co = null;
     }
 
-    public IEnumerator reload(){
+    private IEnumerator reload(){
         _reloading = true;
         _canshoot = false;
 
