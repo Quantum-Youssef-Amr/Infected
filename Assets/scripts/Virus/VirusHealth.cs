@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 public class VirusHealth : Health
 {
@@ -7,7 +8,6 @@ public class VirusHealth : Health
     [SerializeField] protected AudioSource deathSound;
 
     private bool _d;
-
     private void Start()
     {
         MaxHealth += (PublicData.waveNum + 1) * MaxHealth * 0.25f;
@@ -20,10 +20,9 @@ public class VirusHealth : Health
         {
             if (!_d)
             {
-                shooting.Killed++;
                 die(true);
             }
-                
+
             _d = true;
         }
     }
@@ -54,4 +53,8 @@ public class VirusHealth : Health
         Destroy(gameObject);
     }
 
+    void OnDestroy()
+    {
+        Spowner.killed++;
+    }
 }

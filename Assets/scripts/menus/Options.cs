@@ -11,14 +11,12 @@ public class Options : MonoBehaviour
     [SerializeField] private Toggle Crt, HighGraphics;
     [SerializeField] private AudioMixer audioMixer;
     [SerializeField] private Material CrtEffect;
-
-    private float musicValue, sfxValue;
     void Start()
     {
-        MusicSlider.value = PublicData.Music;
-        SfxSlider.value = PublicData.Sfx;
-        Crt.isOn = PublicData.CrtEffect;
-        HighGraphics.isOn = PublicData.UseHighGraphics;
+        MusicSlider.value = PublicData.setting.Music;
+        SfxSlider.value = PublicData.setting.Sfx;
+        Crt.isOn = PublicData.setting.CrtEffect;
+        HighGraphics.isOn = PublicData.setting.UseHighGraphics;
     }
 
     void Update()
@@ -31,11 +29,11 @@ public class Options : MonoBehaviour
         setGraphics(HighGraphics.isOn);
         ChangeCrt(Crt.isOn);
 
-        PublicData.UseHighGraphics = HighGraphics.isOn;
-        PublicData.CrtEffect = Crt.isOn;
+        PublicData.setting.UseHighGraphics = HighGraphics.isOn;
+        PublicData.setting.CrtEffect = Crt.isOn;
 
-        PublicData.Music = MusicSlider.value;
-        PublicData.Sfx = SfxSlider.value;
+        PublicData.setting.Music = MusicSlider.value;
+        PublicData.setting.Sfx = SfxSlider.value;
 
     }
 
@@ -44,7 +42,7 @@ public class Options : MonoBehaviour
     }
 
     public void setGraphics(bool state){
-        PublicData.UseHighGraphics = Camera.main.GetUniversalAdditionalCameraData().renderPostProcessing = state;
+        PublicData.setting.UseHighGraphics = Camera.main.GetUniversalAdditionalCameraData().renderPostProcessing = state;
     }
 
     public void changeMusicVolume(float new_value){

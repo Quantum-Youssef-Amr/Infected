@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class pause : MonoBehaviour
 {
@@ -8,19 +9,40 @@ public class pause : MonoBehaviour
     [SerializeField] private playerHealth PlayerHealth;
     [SerializeField] private GameObject DeathParticals, d2;
     private bool dead;
-    
+
+    #region inputs
+    private Input_system inputs;
+
+    private void Awake()
+    {
+        inputs = new Input_system();
+    }
+
+    private void OnDisable()
+    {
+        inputs.Disable();
+    }
+
+    private void OnEnable()
+    {
+        inputs.Enable();
+    }
+
+    #endregion
+
+    void Start()
+    {
+        inputs.Player.Pause.performed += _ => { pauseButton(); }; 
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !PublicData.gameover)
-        {
-            pauseButton();
-        }
 
         if (PlayerHealth.dead)
         {
             PublicData.gameover = true;
 
-            if(dead == false)
+            if (dead == false)
                 StartCoroutine(deathSec());
 
             dead = true;
@@ -67,7 +89,6 @@ public class pause : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.2f);
         GameObject.FindGameObjectWithTag("Player").SetActive(false);
         yield return new WaitForSecondsRealtime(1f);
-        shooting.Killed = 0;
         gameOver.SetActive(true);
     }
 

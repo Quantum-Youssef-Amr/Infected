@@ -1,10 +1,28 @@
 fileFormatVersion: 2
-guid: c2b189561b4a71147996f3906e61cd36
+guid: 5921d89ffc5f4f442abea9797dbc0e94
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2836262333398586
-    second: curser_0
+      213: -4241942593237685185
+    second: mouse.png_0
+  - first:
+      213: -8467127674850301427
+    second: mouse.png_1
+  - first:
+      213: -342311552807914465
+    second: mouse.png_2
+  - first:
+      213: -5205239599713497085
+    second: mouse.png_3
+  - first:
+      213: -781207417220841460
+    second: mouse.png_4
+  - first:
+      213: 8149175212308036461
+    second: mouse.png_5
+  - first:
+      213: 4284194739276360501
+    second: mouse.png_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +55,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,9 +64,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
@@ -75,7 +93,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,23 +131,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: curser_0
+      name: mouse.png_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 8
-        height: 8
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6c1c0273f6ce5fff0800000000000000
-      internalID: -2836262333398586
+      spriteID: 0ed1612d05ebd33468397a290f84ee7a
+      internalID: -1568474994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse.png_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77606abbb95adb843ab89e65e5cd80c6
+      internalID: 1846422025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse.png_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 292ea3e4b2484c548a46345225302dac
+      internalID: 558659571
       vertices: []
       indices: 
       edges: []
@@ -138,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: a3fc8dbe87087b340b6f003037bc3312
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +210,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      curser_0: -2836262333398586
+      mouse.png_0: -1568474994
+      mouse.png_1: 1846422025
+      mouse.png_2: 558659571
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

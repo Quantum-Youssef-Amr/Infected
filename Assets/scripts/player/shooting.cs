@@ -1,14 +1,12 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class shooting : MonoBehaviour
 {
     [SerializeField] public float Cooldown;
     [SerializeField] public GameObject Gun, Bult;
     [SerializeField] public AudioSource shoot;
-    [SerializeField] public Slider prograss;
-
     [SerializeField] public int bolts = 1000;
     [SerializeField] public int boltsInRound = 30;
     [SerializeField] public float reloading_Time = 0.5f;
@@ -18,34 +16,46 @@ public class shooting : MonoBehaviour
     public int _bolts_shoot {get; set;}
     private Coroutine co;
     public bool _canshoot = false, _reloading = false;
-    public static int Killed;
 
     public int Rate { get { return (int)(1f / Cooldown); }}
 
+    #region inputs
+    private Input_system inputs;
+
     private void Awake()
     {
+        inputs = new Input_system();
         _t = transform;
         _main = Camera.main;
+    }
+
+    private void OnEnable()
+    {
+        inputs.Enable();
+    }
+
+    private void Osable()
+    {
+        inputs.Disable();
+    }
+
+    #endregion
+
+    void Start()
+    {
+        inputs.Player.Fire.performed += _ => { Fire(); };
+        inputs.Player.Reloud.performed += _ => { if(co == null) StartCoroutine(reload()); };
     }
 
     private void FixedUpdate()
     {
         if (PublicData.pause || PublicData.gameover) return;
-        float pro = (float) Killed / Spowner._tospawn;
-        prograss.value = pro;
-            
-        if(co==null && _bolts_shoot >= boltsInRound) co = StartCoroutine(reload());
-        if(!Application.isMobilePlatform){
-            if (Input.GetKey(KeyCode.Mouse0))
-            {    
-                Fire();
-            }
-        }
+        if (co == null && _bolts_shoot >= boltsInRound) co = StartCoroutine(reload());
     }
 
     public void Fire(){
-        if(_bolts_shoot >= boltsInRound) return;
-        if(co == null) co = StartCoroutine(Shoot());
+        if (PublicData.pause || PublicData.gameover || _bolts_shoot >= boltsInRound) return;
+        if (co == null) co = StartCoroutine(Shoot());
     }
 
     private IEnumerator Shoot()
@@ -63,16 +73,20 @@ public class shooting : MonoBehaviour
     }
 
     private IEnumerator reload(){
-        _reloading = true;
-        _canshoot = false;
+        if (_bolts_shoot != 0)
+        {
+            _reloading = true;
+            _canshoot = false;
 
-        yield return new WaitForSeconds(reloading_Time);
+            yield return new WaitForSeconds(reloading_Time);
 
-        bolts -= boltsInRound;
-        _bolts_shoot=0;
+            bolts -= boltsInRound;
+            _bolts_shoot=0;
 
-        _canshoot = true;
-        _reloading = false;
+            _canshoot = true;
+            _reloading = false;
+        }
+        yield return null;
         co = null;
     }
 
