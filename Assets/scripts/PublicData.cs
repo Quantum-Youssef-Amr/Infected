@@ -1,11 +1,70 @@
-public struct PublicData 
+using System.Security;
+using NUnit.Framework.Constraints;
+using UnityEngine;
+
+public struct PublicData
 {
+    // Genral Data
     public static float money = 0f;
     public static int waveNum = 1;
-    public static int UpGradePoints = 0;
-    public static bool pause = false;
-    public static bool gameover = false;
-    public static bool upgradeing = false;
-    public static float Music, Sfx;
-    public static bool UseHighGraphics = true, CrtEffect;
+
+    // game state
+    public static bool pause = false, upgradeing = false, gameover = false;
+
+    // manager objects
+    public static Platform platform = new Platform(false);
+    public static setting setting = new setting(false);
+}
+
+public struct setting
+{
+    // visuals
+    public int Quality;
+    public bool UseHighGraphics, CrtEffect;
+
+    //audio
+    public float Music, Sfx;
+
+    // accessbility
+    public float MouseSenesitevity;
+    public bool left_handed;
+    
+    // controls
+    public Vector2[] btnsLocations;
+    public float[] btnsSize;
+    public Vector2 joystickLocation;
+
+    public setting(bool _)
+    {
+        Quality = 4;
+        UseHighGraphics = CrtEffect = true;
+
+        Music = Sfx = 0;
+
+        MouseSenesitevity = 2f;
+        left_handed = false;
+
+        joystickLocation = Vector2.zero;
+        btnsLocations = new Vector2[2];
+        btnsSize = new float[2];
+
+    }
+}
+
+public struct Platform
+{
+    public PlatformType PlatformType;
+    public bool HideUI;
+
+    public Platform(bool _)
+    {
+        PlatformType = Application.isMobilePlatform ? PlatformType.Mobile : PlatformType.PC;
+        HideUI = PlatformType == PlatformType.Mobile ? false : true;
+    }
+}
+
+public enum PlatformType
+{
+    PC = 0,
+    Mobile = 1
 }

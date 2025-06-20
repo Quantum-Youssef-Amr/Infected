@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class MainMenu : MonoBehaviour
 {
@@ -14,6 +15,25 @@ public class MainMenu : MonoBehaviour
     
     private AudioSource _musicSource;
 
+#region inputs
+    private Input_system inputs;
+
+    private void Awake()
+    {
+        inputs = new Input_system();
+    }
+
+    private void OnEnable()
+    {
+        inputs.Enable();
+    }
+
+    private void Osable()
+    {
+        inputs.Disable();
+    }
+
+    #endregion
     private void Start()
     {
         version.text = $"v{Application.version}";
@@ -21,16 +41,8 @@ public class MainMenu : MonoBehaviour
         fullscreen.SetFloat("_offset", 0.2f);
         StartCoroutine(GameStart());
         _musicSource = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<AudioSource>();
+        inputs.Player.Pause.performed += _ => { if (!splashScren.activeInHierarchy) back(); };
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && !splashScren.activeSelf)
-        {
-            back();
-        }
-    }
-
 
     public void Play()
     {

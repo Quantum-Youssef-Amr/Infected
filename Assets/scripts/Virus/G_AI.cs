@@ -57,7 +57,6 @@ public class G_AI : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             health.die();
-            shooting.Killed++;
         }
             
     }

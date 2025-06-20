@@ -1,106 +1,122 @@
-using UnityEngine;
-using TMPro;
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using System.Collections;
+using UnityEngine;
 public class Spowner : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> objects = new List<GameObject>();
-    [SerializeField] private GameObject[] FObjects;
-    [SerializeField] private float Rate, ChangeRate, SpawnRad = 1,waveNum = 1, EparWave = 10;
-    [SerializeField] private TextMeshProUGUI waveText;
-    [SerializeField] private UpgradeSystem upgrade;
+    public static int killed;
+    [SerializeField] private AnimationCurve spownRate;
+    [SerializeField] private float Cooldown = 0.3f, HardnessChangeRate = 0.05f;
+    [SerializeField] private int WaveNumber = 1, AddNewEnemyAfter = 2;
+    [SerializeField] private GameObject[] enemys = new GameObject[0];
+    [SerializeField] private UpgradeSystem upgradeSystem;
 
-    private Camera _main;
-    private float _cameraSize;
-    private int _eSpowned;
-    public static int _tospawn;
-
-    private void Awake()
+    private List<SpownData> spowns = new List<SpownData>();
+    public float prograss { get; private set; }
+    private int _spownIndex, _allowedenemy;
+    private Camera _mc;
+    private Coroutine _spowning;
+    void Start()
     {
-        _main = Camera.main;
-        _cameraSize = _main.orthographicSize;
-        PublicData.upgradeing = false;
-
-        _tospawn = Mathf.FloorToInt(waveNum * EparWave);
+        _mc = Camera.main;
+        Startwave();
     }
 
-    float _timer;
-    Vector2 m_spownLoc;
-    Coroutine su;
-    private void Update()
+    void Update()
     {
-        if (PublicData.pause || PublicData.gameover) return;
-
-        waveText.text = "wave " + waveNum;
-
-        if (_timer < (1 / Rate) * waveNum) _timer += Time.deltaTime;
-        else
-        {
-            _timer = 0;
-            if (_eSpowned < _tospawn)
-            {
-                spown();
-                _eSpowned++;
-            }
-            else
-            {
-                if (shooting.Killed == _tospawn)
-                {
-                    if (PublicData.upgradeing == false && su == null)
-                        su = StartCoroutine(startUpgrade());
-                }
-            }
-        }
+        prograss = (float)killed / spowns.Count;
     }
 
-    private int index;
-    public void nextWave()
+    private void Startwave()
     {
-        Random.InitState(Random.Range(0,1000000));
+        SetWaveData();
+        if(_spowning == null) _spowning = StartCoroutine(Spown());
+    }
 
-        if (index != FObjects.Length)
+    private IEnumerator Spown()
+    {
+        yield return new WaitUntil(() => { return !PublicData.pause && !PublicData.gameover && !PublicData.upgradeing; });
+        if (_spownIndex != spowns.Count)
         {
-            if (waveNum % 2 == 0)
-            {
-                objects.Add(FObjects[index]);
-                index++;
-            }
+            Instantiate(spowns[_spownIndex].obj, spowns[_spownIndex].pos, Quaternion.identity, transform);
+            _spownIndex++;
         }
 
-        waveNum++;
-        _eSpowned = 0;
-        _tospawn = Mathf.FloorToInt(waveNum * EparWave);
-        shooting.Killed = 0;
-        Rate += ChangeRate;
+        if (transform.childCount == 0 && _spownIndex == spowns.Count)
+        {
+            Upgrades();
 
-        PublicData.waveNum = (int) waveNum;
+            yield return new WaitUntil(() =>
+            {
+                return !PublicData.upgradeing;
+            });
+
+            resetWave();
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(Cooldown);
+        _spowning = null;
+        if (_spowning == null) _spowning = StartCoroutine(Spown());
     }
 
-    private void spown()
+    private void resetWave()
     {
-        _cameraSize = _main.orthographicSize;
+        _spownIndex = 0;
+        killed = 0;
+        spowns = new List<SpownData>();
 
-        m_spownLoc = Random.onUnitSphere;
-        m_spownLoc.Normalize();
-        m_spownLoc *= _cameraSize * (2 + ((float)Screen.height / Screen.width)) * SpawnRad;
-        m_spownLoc = new Vector2(m_spownLoc.x + Mathf.Sign(m_spownLoc.x)* (1980f/Screen.currentResolution.width), m_spownLoc.y + Mathf.Sign(m_spownLoc.y)* (1080f/Screen.currentResolution.height));
-        
-        Instantiate(objects[Random.Range(0, objects.Count)], m_spownLoc, Quaternion.identity);
+        AdvanceWave();
+        Startwave();
     }
 
-    IEnumerator startUpgrade()
+    private void AdvanceWave()
     {
-        upgrade.ShowUpgrades();
+        WaveNumber++;
+        PublicData.waveNum = WaveNumber;
+        Cooldown -= HardnessChangeRate;
+    }
+
+    public void Upgrades()
+    {
         PublicData.upgradeing = true;
-        yield return new WaitUntil(() => { return !PublicData.upgradeing; });
-        nextWave();
-        su = null;
+        upgradeSystem.ShowUpgrades();
     }
 
-    void OnDrawGizmosSelected()
+    private void SetWaveData()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, SpawnRad * Camera.main.orthographicSize * (2 + ((float)Screen.height / Screen.width)));
+        if (WaveNumber % AddNewEnemyAfter == 0) _allowedenemy++;
+        for (int i = 0; i < getEnemyNember(); i++)
+        {
+            GameObject e = enemys[UnityEngine.Random.Range(0, _allowedenemy % enemys.Length)];
+            spowns.Add(new SpownData(e, getRdPos()));
+        }
     }
+
+    private Vector2 getRdPos()
+    {
+        Vector2 pos = UnityEngine.Random.insideUnitCircle;
+        pos.Normalize();
+        pos *= 2.2f * _mc.orthographicSize;
+        return pos;
+    }
+
+    private int getEnemyNember()
+    {
+        return Mathf.FloorToInt(spownRate.Evaluate(WaveNumber));
+    }
+
 }
 
+[Serializable]
+class SpownData
+{
+    public GameObject obj;
+    public Vector2 pos;
+
+    public SpownData(GameObject obj, Vector2 pos)
+    {
+        this.obj = obj;
+        this.pos = pos;
+    }
+}
