@@ -27,6 +27,7 @@ public class UpgradeSystem : MonoBehaviour
         _pg = player.GetComponent<shooting>();
         _pm = player.GetComponent<PlayerMovement>();
         _bd = bult.GetComponent<bult>();
+        GameObject.FindGameObjectWithTag("discriptaion").GetComponent<TextMeshProUGUI>().text = "";
     }
 
 

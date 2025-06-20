@@ -1,45 +1,48 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-public class cardHolder : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+using System;
+
+public class cardHolder : MonoBehaviour
 {
     public Card Card;
 
-    private TextMeshProUGUI text;
+    public GameObject text;
     private Button _b;
-
     private void Start()
     {
         _b = GetComponent<Button>();
-        text = GameObject.FindGameObjectWithTag("discriptaion").transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        text = GameObject.FindGameObjectWithTag("discriptaion");
+        
 
-
-        if (PublicData.platform.PlatformType == PlatformType.Mobile)
+        if (Application.isMobilePlatform)
             _b.onClick.AddListener(() =>
             {
                 updateToolTip();
             });
+
+    }
+
+    private void OnMouseEnter()
+    {
+        if(!Application.isMobilePlatform)
+            updateToolTip();
+    }
+
+    private void OnMouseExit()
+    {
+        if (!Application.isMobilePlatform)
+        {
+            text.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
+            text.SetActive(false);
+        }
+            
     }
 
     private void updateToolTip()
     {
-        text.text = Card.description;
-        text.gameObject.SetActive(true);
+        text.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = Card.description;
+        text.SetActive(true);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (PublicData.platform.PlatformType == PlatformType.PC)
-        {
-            text.text = "";
-            text.gameObject.SetActive(false);
-        }
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if(PublicData.platform.PlatformType == PlatformType.PC)
-            updateToolTip();
-    }
 }
