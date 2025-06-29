@@ -13,7 +13,7 @@ public class Filehandler{
     private string DataSaveName;
     private bool UseEncryption = false;
 
-    private readonly string Key = "OrPitaStudiosCEOIsTheSoloDiv";
+    private readonly string Key = "OrPitaStudiosCEOIsYoussefAmr";
 
     public Filehandler(string DataPath, string DataSaveName, bool UseEncryption = true){
         this.DataPath = DataPath;

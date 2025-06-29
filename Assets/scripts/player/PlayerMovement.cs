@@ -48,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (PublicData.pause || PublicData.gameover || PublicData.upgradeing) return;
+        
+        if (PublicData.platform.PlatformType == PlatformType.Mobile) dir = controler.vec;
         RotatePlayer(dir);
     }
 

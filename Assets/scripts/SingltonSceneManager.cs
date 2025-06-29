@@ -55,15 +55,18 @@ public class SingltonSceneManager : MonoBehaviour, IDataPersestant
     {
         PublicData.setting.Sfx = data.sound;
         PublicData.setting.Music = data.Music;
+
         PublicData.setting.CrtEffect = data.CRT_effect;
         PublicData.setting.UseHighGraphics = data.HighGraphics;
+        PublicData.setting.Quality = (QuiltyLevels)data.Quality;
+
         PublicData.setting.MouseSenesitevity = data.MouseSenesitevity;
-        PublicData.setting.Quality = data.Quality;
         PublicData.setting.left_handed = data.left_handed;
 
         PublicData.setting.btnsLocations = data.btnsLocations;
         PublicData.setting.btnsSize = data.btnsSize;
         PublicData.setting.joystickLocation = data.joystickLocation;
+        PublicData.setting.holdtofire = data.holdTofire;
         
     }
 
@@ -71,14 +74,17 @@ public class SingltonSceneManager : MonoBehaviour, IDataPersestant
     {
         data.sound = PublicData.setting.Sfx;
         data.Music = PublicData.setting.Music;
+
         data.CRT_effect = PublicData.setting.CrtEffect;
         data.HighGraphics = PublicData.setting.UseHighGraphics;
+        data.Quality = (int)PublicData.setting.Quality;
+
         data.MouseSenesitevity = PublicData.setting.MouseSenesitevity;
-        data.Quality = PublicData.setting.Quality;
         data.left_handed = PublicData.setting.left_handed;
 
         data.btnsLocations = PublicData.setting.btnsLocations;
         data.btnsSize = PublicData.setting.btnsSize;
         data.joystickLocation = PublicData.setting.joystickLocation;
+        data.holdTofire = PublicData.setting.holdtofire;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 public class Data{
 
     public float Music, sound, MouseSenesitevity;
-    public bool CRT_effect = true, HighGraphics =  true, left_handed;
+    public bool CRT_effect = true, HighGraphics = true, left_handed, holdTofire = true;
     public int Quality;
     public Vector2 joystickLocation;
     public Vector2[] btnsLocations;
@@ -13,12 +13,13 @@ public class Data{
 
     public Data()
     {
-        Quality = 4;
+        Quality = 3;
         CRT_effect = HighGraphics = true;
 
         Music = sound = 0f;
         
         left_handed = false;
+        holdTofire = true;
         MouseSenesitevity = 3f;
 
         joystickLocation = new Vector2(-340, -193);
@@ -30,7 +31,7 @@ public class Data{
         btnsSize = new float[]
         {
             1,
-            3
+            1
         };
     }
 

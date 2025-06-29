@@ -28,10 +28,13 @@ public class BoltsUpdater : MonoBehaviour
         _animation_fill_amount = boltsCounter.fillAmount;
         yield return new WaitUntil(() =>
         {
-            DOTween.To(() => _animation_fill_amount, x => _animation_fill_amount = x, 1f, playerGun.reloading_Time).SetEase(Ease.Linear);
+            DOTween.To(() => _animation_fill_amount, x => _animation_fill_amount = x, 1f, playerGun.reloading_Time).SetSpeedBased(true).SetEase(Ease.Linear);
             boltsCounter.fillAmount = _animation_fill_amount;
-            return _animation_fill_amount >= 0.99f;
+            return _animation_fill_amount > 0.99f;
         });
+
+        playerGun._canshoot = true;
+        playerGun._reloading = false;
         co = null;
     }
 

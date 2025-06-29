@@ -453,7 +453,6 @@ GameObject:
   - component: {fileID: 2003773129162811061}
   - component: {fileID: 6491778866277358560}
   - component: {fileID: 671719131149381164}
-  - component: {fileID: 5331111864842939834}
   m_Layer: 5
   m_Name: Nob
   m_TagString: Untagged
@@ -518,41 +517,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5331111864842939834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7182088147072067271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9d677f1681015749b15c436eec6d880, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MovementRange: 185
-  m_DynamicOriginRange: 78.4
-  m_ControlPath: <Joystick>/stick
-  m_Behaviour: 1
-  m_UseIsolatedInputActions: 0
-  m_PointerDownAction:
-    m_Name: Pointer Down
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 711756cc-2f12-434c-a8fc-d3f6740c46e1
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_PointerMoveAction:
-    m_Name: Pointer Move
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 4a9533f5-21ea-49f9-aede-2a49c6abbe65
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
 --- !u!1 &7511909291519527216
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,13 +13,13 @@ public struct PublicData
 
     // manager objects
     public static Platform platform = new Platform(false);
-    public static setting setting = new setting(false);
+    public static setting setting = new setting();
 }
 
-public struct setting
+public class setting
 {
     // visuals
-    public int Quality;
+    public QuiltyLevels Quality;
     public bool UseHighGraphics, CrtEffect;
 
     //audio
@@ -34,9 +34,10 @@ public struct setting
     public float[] btnsSize;
     public Vector2 joystickLocation;
 
-    public setting(bool _)
+    public bool holdtofire;
+    public setting()
     {
-        Quality = 4;
+        Quality = QuiltyLevels.Med;
         UseHighGraphics = CrtEffect = true;
 
         Music = Sfx = 0;
@@ -47,6 +48,7 @@ public struct setting
         joystickLocation = Vector2.zero;
         btnsLocations = new Vector2[2];
         btnsSize = new float[2];
+        holdtofire = true;
 
     }
 }
@@ -58,13 +60,23 @@ public struct Platform
 
     public Platform(bool _)
     {
-        PlatformType = Application.isMobilePlatform ? PlatformType.Mobile : PlatformType.PC;
+        PlatformType = !Application.isMobilePlatform ? PlatformType.Mobile : PlatformType.PC;
         HideUI = PlatformType == PlatformType.Mobile ? false : true;
     }
 }
+
 
 public enum PlatformType
 {
     PC = 0,
     Mobile = 1
 }
+
+public enum QuiltyLevels
+{
+    low = 0,
+    Med = 1,
+    High = 2,
+    Ultra = 3
+}
+    

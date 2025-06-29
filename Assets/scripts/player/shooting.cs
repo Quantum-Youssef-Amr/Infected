@@ -47,6 +47,14 @@ public class shooting : MonoBehaviour
         inputs.Player.Reloud.performed += _ => { if(co == null) StartCoroutine(reload()); };
     }
 
+    void Update()
+    {
+        if (inputs.Player.Fire.IsInProgress() && PublicData.setting.holdtofire)
+        {
+            Fire();
+        }
+    }
+
     private void FixedUpdate()
     {
         if (PublicData.pause || PublicData.gameover) return;
@@ -78,13 +86,8 @@ public class shooting : MonoBehaviour
             _reloading = true;
             _canshoot = false;
 
-            yield return new WaitForSeconds(reloading_Time);
-
             bolts -= boltsInRound;
             _bolts_shoot=0;
-
-            _canshoot = true;
-            _reloading = false;
         }
         yield return null;
         co = null;

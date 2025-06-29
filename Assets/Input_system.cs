@@ -121,6 +121,15 @@ namespace UnityEngine.InputSystem
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""holdfire"",
+                    ""type"": ""Button"",
+                    ""id"": ""0afb9ad7-de69-445e-a2db-24d5defb2223"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Reloud"",
                     ""type"": ""Button"",
                     ""id"": ""1c3206ec-de68-483b-8b89-b878b02fc383"",
@@ -210,6 +219,28 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c5a2bdb0-ceb3-4242-a045-0d19a471f75a"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad;Keyboard&Mouse"",
+                    ""action"": ""holdfire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e66a244b-3762-4dd6-b40f-327cebd7cbb2"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""holdfire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -514,6 +545,15 @@ namespace UnityEngine.InputSystem
                     ""type"": ""Value"",
                     ""id"": ""bca0c293-c08f-491d-8b1e-984855716387"",
                     ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""Value"",
+                    ""id"": ""62ef7108-ece1-4109-8733-5934c5c4eadb"",
+                    ""expectedControlType"": ""Double"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -1080,6 +1120,50 @@ namespace UnityEngine.InputSystem
                     ""action"": ""ControlerMousePOS"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Two Modifiers"",
+                    ""id"": ""2767fe19-4921-4043-8042-c1ef7e11d573"",
+                    ""path"": ""TwoModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""c3b7105e-1336-49bf-aed8-019cf07b58d7"",
+                    ""path"": ""<Touchscreen>/primaryTouch/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""a57eb48a-0d59-4e89-beb9-acab57e56c1c"",
+                    ""path"": ""<Touchscreen>/touch1/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""d78a1106-4cdf-4104-9840-f97bd92c1ff0"",
+                    ""path"": ""<Touchscreen>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -1091,6 +1175,7 @@ namespace UnityEngine.InputSystem
             m_Player_PCmove = m_Player.FindAction("PC move", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+            m_Player_holdfire = m_Player.FindAction("holdfire", throwIfNotFound: true);
             m_Player_Reloud = m_Player.FindAction("Reloud", throwIfNotFound: true);
             m_Player_Changeability = m_Player.FindAction("Change ability", throwIfNotFound: true);
             m_Player_Useability = m_Player.FindAction("Use ability", throwIfNotFound: true);
@@ -1107,6 +1192,7 @@ namespace UnityEngine.InputSystem
             m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
             m_UI_MousePOS = m_UI.FindAction("MousePOS", throwIfNotFound: true);
             m_UI_ControlerMousePOS = m_UI.FindAction("ControlerMousePOS", throwIfNotFound: true);
+            m_UI_Zoom = m_UI.FindAction("Zoom", throwIfNotFound: true);
         }
 
         ~@Input_system()
@@ -1191,6 +1277,7 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_Player_PCmove;
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Fire;
+        private readonly InputAction m_Player_holdfire;
         private readonly InputAction m_Player_Reloud;
         private readonly InputAction m_Player_Changeability;
         private readonly InputAction m_Player_Useability;
@@ -1218,6 +1305,10 @@ namespace UnityEngine.InputSystem
             /// Provides access to the underlying input action "Player/Fire".
             /// </summary>
             public InputAction @Fire => m_Wrapper.m_Player_Fire;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/holdfire".
+            /// </summary>
+            public InputAction @holdfire => m_Wrapper.m_Player_holdfire;
             /// <summary>
             /// Provides access to the underlying input action "Player/Reloud".
             /// </summary>
@@ -1269,6 +1360,9 @@ namespace UnityEngine.InputSystem
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
+                @holdfire.started += instance.OnHoldfire;
+                @holdfire.performed += instance.OnHoldfire;
+                @holdfire.canceled += instance.OnHoldfire;
                 @Reloud.started += instance.OnReloud;
                 @Reloud.performed += instance.OnReloud;
                 @Reloud.canceled += instance.OnReloud;
@@ -1301,6 +1395,9 @@ namespace UnityEngine.InputSystem
                 @Fire.started -= instance.OnFire;
                 @Fire.performed -= instance.OnFire;
                 @Fire.canceled -= instance.OnFire;
+                @holdfire.started -= instance.OnHoldfire;
+                @holdfire.performed -= instance.OnHoldfire;
+                @holdfire.canceled -= instance.OnHoldfire;
                 @Reloud.started -= instance.OnReloud;
                 @Reloud.performed -= instance.OnReloud;
                 @Reloud.canceled -= instance.OnReloud;
@@ -1360,6 +1457,7 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_UI_RightClick;
         private readonly InputAction m_UI_MousePOS;
         private readonly InputAction m_UI_ControlerMousePOS;
+        private readonly InputAction m_UI_Zoom;
         /// <summary>
         /// Provides access to input actions defined in input action map "UI".
         /// </summary>
@@ -1411,6 +1509,10 @@ namespace UnityEngine.InputSystem
             /// Provides access to the underlying input action "UI/ControlerMousePOS".
             /// </summary>
             public InputAction @ControlerMousePOS => m_Wrapper.m_UI_ControlerMousePOS;
+            /// <summary>
+            /// Provides access to the underlying input action "UI/Zoom".
+            /// </summary>
+            public InputAction @Zoom => m_Wrapper.m_UI_Zoom;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -1467,6 +1569,9 @@ namespace UnityEngine.InputSystem
                 @ControlerMousePOS.started += instance.OnControlerMousePOS;
                 @ControlerMousePOS.performed += instance.OnControlerMousePOS;
                 @ControlerMousePOS.canceled += instance.OnControlerMousePOS;
+                @Zoom.started += instance.OnZoom;
+                @Zoom.performed += instance.OnZoom;
+                @Zoom.canceled += instance.OnZoom;
             }
 
             /// <summary>
@@ -1508,6 +1613,9 @@ namespace UnityEngine.InputSystem
                 @ControlerMousePOS.started -= instance.OnControlerMousePOS;
                 @ControlerMousePOS.performed -= instance.OnControlerMousePOS;
                 @ControlerMousePOS.canceled -= instance.OnControlerMousePOS;
+                @Zoom.started -= instance.OnZoom;
+                @Zoom.performed -= instance.OnZoom;
+                @Zoom.canceled -= instance.OnZoom;
             }
 
             /// <summary>
@@ -1569,6 +1677,13 @@ namespace UnityEngine.InputSystem
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnFire(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "holdfire" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnHoldfire(InputAction.CallbackContext context);
             /// <summary>
             /// Method invoked when associated input action "Reloud" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>
@@ -1675,6 +1790,13 @@ namespace UnityEngine.InputSystem
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnControlerMousePOS(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Zoom" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnZoom(InputAction.CallbackContext context);
         }
     }
 }
