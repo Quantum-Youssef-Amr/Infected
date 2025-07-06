@@ -41,7 +41,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _UseLines: 0
+    - _UseLines: 1
     - _Use_dirt: 1
     - _apply: 1
     - _bloom_amount: 82.7
@@ -55,7 +55,7 @@ Material:
     - _larg_lines_num: 1
     - _larg_lines_speed: 0.05
     - _lines: 100
-    - _offset: 0.2
+    - _offset: 0.25742576
     - _power: 4.68
     - _small_lines_num: 10
     - _small_lines_speed: 0.02

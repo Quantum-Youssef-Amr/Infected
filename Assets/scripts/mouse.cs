@@ -1,41 +1,64 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
-
-public class mouse : MonoBehaviour
+public class LocalMouse : MonoBehaviour
 {
-    [SerializeField] private float Eazing;
-    [SerializeField] private Sprite[] sprites;
-    [SerializeField] private Spowner Spowner;
+    private Image _sr;
+    #region inputs
+    private Input_system inputs;
 
-    private Transform _t;
-    private Camera _main;
-    private Image Image;
-    private Transform _pt;
-    void Start()
+    private void Awake()
     {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
-
-        _pt = GameObject.FindGameObjectWithTag("Player").transform;
-        _t = transform;
-        _main = Camera.main;
-        Image = GetComponent<Image>();
+        inputs = new Input_system();
     }
 
-
-    private void FixedUpdate()
+    private void OnEnable()
     {
-        if (Application.isMobilePlatform)
+        inputs.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputs.Disable();
+    }
+
+    #endregion
+    void Start()
+    {
+        if (PublicData.platform.PlatformType == PlatformType.Mobile)
         {
-            _t.position = _pt.transform.up * (_main.orthographicSize/3);
-            Image.sprite = sprites[0];
-            gameObject.SetActive(!PublicData.gameover || !PublicData.pause || !PublicData.upgradeing);
-            gameObject.transform.SetSiblingIndex(1);
+            gameObject.SetActive(false);
+            return;
+        }
+
+        _sr = GetComponent<Image>();
+        Cursor.visible = false;
+
+        inputs.UI.MousePOS.performed += v =>
+        {
+            transform.position = (Vector2)Camera.main.ScreenToWorldPoint(v.ReadValue<Vector2>());
+        };
+    }
+    void Update()
+    {
+        if (inputs.UI.ControlerMousePOS.IsInProgress())
+        {
+            transform.position += (Vector3)inputs.UI.ControlerMousePOS.ReadValue<Vector2>() * Time.deltaTime * 5f;
+            Mouse.current.position.QueueValueChange(Camera.main.WorldToScreenPoint(transform.position));
+            Mouse.current.position.ApplyParameterChanges();
+        }
+
+        if (PublicData.upgradeing || PublicData.pause || PublicData.gameover)
+        {
+            //not playing
+            _sr.enabled = true;
+            Cursor.lockState = CursorLockMode.None;
         }
         else
         {
-            _t.position = Vector3.Lerp(_t.position, (Vector2)_main.ScreenToWorldPoint(Input.mousePosition), Time.deltaTime * Eazing);
-            Image.sprite = PublicData.upgradeing || PublicData.pause || PublicData.gameover ? sprites[1] : sprites[0];
+            //playing
+            _sr.enabled = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 }
