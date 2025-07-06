@@ -107,7 +107,7 @@ namespace UnityEngine.InputSystem
                     ""type"": ""Value"",
                     ""id"": ""351f2ccd-1f9f-44bf-9bec-d62ac5c5f408"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": ""StickDeadzone"",
+                    ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
@@ -118,15 +118,6 @@ namespace UnityEngine.InputSystem
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""holdfire"",
-                    ""type"": ""Button"",
-                    ""id"": ""0afb9ad7-de69-445e-a2db-24d5defb2223"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -191,17 +182,6 @@ namespace UnityEngine.InputSystem
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3ea4d645-4504-4529-b061-ab81934c3752"",
-                    ""path"": ""<Joystick>/stick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""143bb1cd-cc10-4eca-a2f0-a3664166fe91"",
                     ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
@@ -219,28 +199,6 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c5a2bdb0-ceb3-4242-a045-0d19a471f75a"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad;Keyboard&Mouse"",
-                    ""action"": ""holdfire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e66a244b-3762-4dd6-b40f-327cebd7cbb2"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""holdfire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1175,7 +1133,6 @@ namespace UnityEngine.InputSystem
             m_Player_PCmove = m_Player.FindAction("PC move", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
-            m_Player_holdfire = m_Player.FindAction("holdfire", throwIfNotFound: true);
             m_Player_Reloud = m_Player.FindAction("Reloud", throwIfNotFound: true);
             m_Player_Changeability = m_Player.FindAction("Change ability", throwIfNotFound: true);
             m_Player_Useability = m_Player.FindAction("Use ability", throwIfNotFound: true);
@@ -1277,7 +1234,6 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_Player_PCmove;
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Fire;
-        private readonly InputAction m_Player_holdfire;
         private readonly InputAction m_Player_Reloud;
         private readonly InputAction m_Player_Changeability;
         private readonly InputAction m_Player_Useability;
@@ -1305,10 +1261,6 @@ namespace UnityEngine.InputSystem
             /// Provides access to the underlying input action "Player/Fire".
             /// </summary>
             public InputAction @Fire => m_Wrapper.m_Player_Fire;
-            /// <summary>
-            /// Provides access to the underlying input action "Player/holdfire".
-            /// </summary>
-            public InputAction @holdfire => m_Wrapper.m_Player_holdfire;
             /// <summary>
             /// Provides access to the underlying input action "Player/Reloud".
             /// </summary>
@@ -1360,9 +1312,6 @@ namespace UnityEngine.InputSystem
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
-                @holdfire.started += instance.OnHoldfire;
-                @holdfire.performed += instance.OnHoldfire;
-                @holdfire.canceled += instance.OnHoldfire;
                 @Reloud.started += instance.OnReloud;
                 @Reloud.performed += instance.OnReloud;
                 @Reloud.canceled += instance.OnReloud;
@@ -1395,9 +1344,6 @@ namespace UnityEngine.InputSystem
                 @Fire.started -= instance.OnFire;
                 @Fire.performed -= instance.OnFire;
                 @Fire.canceled -= instance.OnFire;
-                @holdfire.started -= instance.OnHoldfire;
-                @holdfire.performed -= instance.OnHoldfire;
-                @holdfire.canceled -= instance.OnHoldfire;
                 @Reloud.started -= instance.OnReloud;
                 @Reloud.performed -= instance.OnReloud;
                 @Reloud.canceled -= instance.OnReloud;
@@ -1677,13 +1623,6 @@ namespace UnityEngine.InputSystem
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnFire(InputAction.CallbackContext context);
-            /// <summary>
-            /// Method invoked when associated input action "holdfire" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-            /// </summary>
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnHoldfire(InputAction.CallbackContext context);
             /// <summary>
             /// Method invoked when associated input action "Reloud" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>

@@ -14,12 +14,8 @@ public class cardHolder : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         _b = GetComponent<Button>();
         text = GameObject.FindGameObjectWithTag("discriptaion").transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
-
         if (PublicData.platform.PlatformType == PlatformType.Mobile)
-            _b.onClick.AddListener(() =>
-            {
-                updateToolTip();
-            });
+            _b.onClick.AddListener(updateToolTip);
     }
 
     private void updateToolTip()

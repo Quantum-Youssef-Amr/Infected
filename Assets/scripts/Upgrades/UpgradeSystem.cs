@@ -68,11 +68,11 @@ public class UpgradeSystem : MonoBehaviour
             m_Card.GetComponent<Button>().name = card.Title;
 
             m_Card.GetComponent<Button>().onClick.AddListener(() => {
-                if (Application.isMobilePlatform)
+                if (PublicData.platform.PlatformType == PlatformType.Mobile)
                 {
                     if(_selected != null)
                     {
-                        if (_selected.name == m_Card.GetComponent<cardHolder>().Card.name)
+                        if (_selected == m_Card.GetComponent<cardHolder>().Card)
                         {
                             HideAndApply(m_Card.GetComponent<cardHolder>().Card);
                             PublicData.upgradeing = false;

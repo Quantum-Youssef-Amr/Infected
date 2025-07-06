@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
         inputs.Player.Move.performed += v =>
         {
             if (PublicData.pause || PublicData.gameover || PublicData.upgradeing) return;
-            dir = v.ReadValue<Vector2>();
+            dir = PublicData.setting.left_handed ? new Vector2(-v.ReadValue<Vector2>().x, v.ReadValue<Vector2>().y) : v.ReadValue<Vector2>();
         };
 
         inputs.Player.PCmove.performed += v =>
@@ -48,8 +48,6 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (PublicData.pause || PublicData.gameover || PublicData.upgradeing) return;
-        
-        if (PublicData.platform.PlatformType == PlatformType.Mobile) dir = controler.vec;
         RotatePlayer(dir);
     }
 

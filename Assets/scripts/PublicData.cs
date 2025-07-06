@@ -49,19 +49,15 @@ public class setting
         btnsLocations = new Vector2[2];
         btnsSize = new float[2];
         holdtofire = true;
-
     }
 }
 
 public struct Platform
 {
     public PlatformType PlatformType;
-    public bool HideUI;
-
     public Platform(bool _)
     {
-        PlatformType = !Application.isMobilePlatform ? PlatformType.Mobile : PlatformType.PC;
-        HideUI = PlatformType == PlatformType.Mobile ? false : true;
+        PlatformType = Application.isMobilePlatform ? PlatformType.Mobile : PlatformType.PC;
     }
 }
 

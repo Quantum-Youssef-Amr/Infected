@@ -17,7 +17,7 @@ public class LocalMouse : MonoBehaviour
         inputs.Enable();
     }
 
-    private void Osable()
+    private void OnDisable()
     {
         inputs.Disable();
     }
@@ -61,6 +61,4 @@ public class LocalMouse : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
-
-
 }

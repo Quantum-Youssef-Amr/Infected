@@ -3,14 +3,19 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class Controlseditor : MonoBehaviour, IPointerClickHandler, IDragHandler, IBeginDragHandler
+public class Controlseditor : MonoBehaviour, IDragHandler ,IPointerUpHandler, IPointerDownHandler
 {
     [SerializeField] private float Sensetavitiy = 0.01f, ZoomUpperlimit = 5f, ZoomLowerLimit = 0.5f;
     [SerializeField] private Color DeactiveColor, ActiveColor;
+    private enum controlState
+    {
+        None, moveingObject, resizingObject
+    }
+    [SerializeField] private controlState controlstate;
+
     private Controlslayout _controlslayout;
     private GameObject _selected_UI_element;
     private Vector2 offset;
-    private bool _canMove;
 
     #region input
     private Input_system inputs;
@@ -32,74 +37,53 @@ public class Controlseditor : MonoBehaviour, IPointerClickHandler, IDragHandler,
 
     #endregion
 
-    private float _delta, _lastDistance;
-
     void Start()
     {
         _controlslayout = GetComponent<Controlslayout>();
-
-        inputs.UI.Zoom.performed += delta =>
-        {
-            Vector2 pos1 = Input.touches[0].position;
-            Vector2 pos2 = Input.touches[1].position;
-
-            float dist = Vector2.Distance(pos1, pos2);
-            if (_lastDistance == 0f)
-            {
-                _lastDistance = dist;
-            }
-
-            _delta = _lastDistance - dist;
-            _lastDistance = dist;
-
-
-            _selected_UI_element.transform.localScale -= _delta * Time.deltaTime * Sensetavitiy * Vector3.one;
-            _selected_UI_element.transform.localScale = new Vector3(Mathf.Clamp(_selected_UI_element.transform.localScale.x, ZoomLowerLimit, ZoomUpperlimit),
-                                                                    Mathf.Clamp(_selected_UI_element.transform.localScale.y, ZoomLowerLimit, ZoomUpperlimit),
-                                                                    Mathf.Clamp(_selected_UI_element.transform.localScale.z, ZoomLowerLimit, ZoomUpperlimit));
-        };
     }
 
-    void Update()
+    public void OnPointerDown(PointerEventData eventData)
     {
-        _canMove = inputs.UI.Zoom.IsInProgress() ? false : true;
+        if (eventData.pointerCurrentRaycast.gameObject == gameObject)
+        {
+            controlstate = controlState.resizingObject;
+            return;
+        }
+        else
+        {
+            if (isInput(eventData))
+            {
+                controlstate = controlState.moveingObject;
+                _selected_UI_element = eventData.pointerCurrentRaycast.gameObject;
+                offset = _selected_UI_element.transform.position - eventData.pointerCurrentRaycast.worldPosition;
+                highlightSelected(_selected_UI_element);
+                return;
+            }
+
+            controlstate = controlState.None;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (_selected_UI_element != null && _canMove)
+        switch (controlstate)
         {
-            _selected_UI_element.transform.position = (Vector2)eventData.pointerCurrentRaycast.worldPosition + offset;
+            case controlState.moveingObject:
+                _selected_UI_element.transform.position = (Vector2)eventData.pointerCurrentRaycast.worldPosition != Vector2.zero ? (Vector2)eventData.pointerCurrentRaycast.worldPosition + offset : _selected_UI_element.transform.position;
+                break;
+
+            case controlState.resizingObject:
+                _selected_UI_element.transform.localScale += eventData.delta.y * Time.deltaTime * Sensetavitiy * Vector3.one;
+                _selected_UI_element.transform.localScale = new Vector3(Mathf.Clamp(_selected_UI_element.transform.localScale.x, ZoomLowerLimit, ZoomUpperlimit),
+                                                                        Mathf.Clamp(_selected_UI_element.transform.localScale.y, ZoomLowerLimit, ZoomUpperlimit),
+                                                                        Mathf.Clamp(_selected_UI_element.transform.localScale.z, ZoomLowerLimit, ZoomUpperlimit));
+                break;
         }
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public void OnPointerUp(PointerEventData eventData)
     {
-        if (eventData.pointerCurrentRaycast.gameObject == null)
-        {
-            return;
-        }
-
-        if (_controlslayout.getAllInputs().Contains(eventData.pointerCurrentRaycast.gameObject))
-        {
-            _selected_UI_element = eventData.pointerCurrentRaycast.gameObject;
-        }
-        offset = _selected_UI_element.transform.position - eventData.pointerCurrentRaycast.worldPosition;
-
-        highlightSelected(_selected_UI_element);
-    }
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (eventData.pointerCurrentRaycast.gameObject == null)
-        {
-            return;
-        }
-
-        if (_controlslayout.getAllInputs().Contains(eventData.pointerCurrentRaycast.gameObject))
-        {
-            _selected_UI_element = eventData.pointerCurrentRaycast.gameObject;
-        }
-        highlightSelected(_selected_UI_element);
+        controlstate = controlState.None;
     }
 
     private void highlightSelected(GameObject selected)
@@ -117,5 +101,10 @@ public class Controlseditor : MonoBehaviour, IPointerClickHandler, IDragHandler,
                 control.transform.GetChild(0).GetComponent<Image>().color = DeactiveColor;
             }
         }
+    }
+
+    private bool isInput(PointerEventData eventData)
+    {
+        return _controlslayout.getAllInputs().Contains(eventData.pointerCurrentRaycast.gameObject);
     }
 }
