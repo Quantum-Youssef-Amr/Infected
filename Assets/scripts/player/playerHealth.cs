@@ -38,6 +38,7 @@ public class playerHealth : Health
 
     public override void die(bool add = false)
     {
+        PublicData.OnGameOver?.Invoke();
         GameObject.FindGameObjectWithTag("musicManager").SetActive(false);
         deathsound.Play();
         StartCoroutine(GetComponent<CameraShake>().Camerashake());

@@ -92,10 +92,12 @@ public class MainMenu : MonoBehaviour
     {
         powerup.Stop();
         loading.gameObject.SetActive(false);
+
         yield return new WaitForSecondsRealtime(1f);
         splashScren.SetActive(false);
         viruses.Play();
-        _musicSource.Play();
+        _musicSource?.Play();
+        
         yield return new WaitForSecondsRealtime(1f);
         gMainMenu.SetActive(true);
     }

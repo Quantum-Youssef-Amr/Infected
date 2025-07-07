@@ -45,6 +45,7 @@ public class Spowner : MonoBehaviour
         if (transform.childCount == 0 && _spownIndex == spowns.Count)
         {
             Upgrades();
+            PublicData.OnUpgrade?.Invoke(true);
 
             yield return new WaitUntil(() =>
             {
@@ -97,7 +98,7 @@ public class Spowner : MonoBehaviour
     {
         Vector2 pos = UnityEngine.Random.insideUnitCircle;
         pos.Normalize();
-        pos *= 2.2f * _mc.orthographicSize;
+        pos *= 2.5f * _mc.orthographicSize;
         return pos;
     }
 
