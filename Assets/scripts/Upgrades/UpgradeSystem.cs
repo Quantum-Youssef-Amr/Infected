@@ -114,7 +114,7 @@ public class UpgradeSystem : MonoBehaviour
         switch (m_card.ablte)
         {
             case Card.power.damage:
-                switch(m_card.adder)
+                switch (m_card.adder)
                 {
                     case true: _bd.Damage += m_card.amount; break;
                     case false: _bd.Damage *= m_card.amount; break;
@@ -132,8 +132,8 @@ public class UpgradeSystem : MonoBehaviour
             case Card.power.PlayerSpeed:
                 switch (m_card.adder)
                 {
-                    case true: _pm.TurningSpeed += m_card.amount;   break;
-                    case false: _pm.TurningSpeed *= m_card.amount;  break;
+                    case true: _pm.TurningSpeed += m_card.amount; break;
+                    case false: _pm.TurningSpeed *= m_card.amount; break;
                 }
                 break;
 
@@ -145,7 +145,7 @@ public class UpgradeSystem : MonoBehaviour
             case Card.power.health:
                 switch (m_card.adder)
                 {
-                    case true: _ph.addhealth(m_card.amount);    break;
+                    case true: _ph.addhealth(m_card.amount); break;
                     case false: _ph.MaxHealth *= m_card.amount; break;
                 }
                 break;
@@ -158,13 +158,14 @@ public class UpgradeSystem : MonoBehaviour
                 Camera.main.orthographicSize *= m_card.amount;
                 break;
 
-            case Card.power.MaxHealth:  _ph.MaxHealth += m_card.amount; break;
-            case Card.power.bolts: _pg.bolts += 2 * _pg.boltsInRound;   break;
+            case Card.power.MaxHealth: _ph.MaxHealth += m_card.amount; break;
+            case Card.power.bolts: _pg.bolts += 2 * _pg.boltsInRound; break;
         }
 
         upgradeScreen.SetActive(false);
         transform.GetChild(0).gameObject.SetActive(true);
         _selected = null;
+        PublicData.OnUpgrade?.Invoke(false);
     }
 
 }

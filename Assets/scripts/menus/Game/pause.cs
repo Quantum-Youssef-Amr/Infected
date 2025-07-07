@@ -2,10 +2,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.InputSystem;
+using System;
 
 public class pause : MonoBehaviour
 {
-    [SerializeField] private GameObject PauseMenu, gameOver;
+    [SerializeField] private GameObject PauseMenu, gameOver, controls;
     [SerializeField] private playerHealth PlayerHealth;
     [SerializeField] private GameObject DeathParticals, d2;
     private bool dead;
@@ -32,7 +33,14 @@ public class pause : MonoBehaviour
 
     void Start()
     {
-        inputs.Player.Pause.performed += _ => { pauseButton(); }; 
+        inputs.Player.Pause.performed += _ => { pauseButton(); };
+        PublicData.OnPause += s => ControlsVis(s);
+        PublicData.OnUpgrade += s => ControlsVis(s);
+    }
+
+    private void ControlsVis(bool s)
+    {
+        controls.SetActive(!s);
     }
 
     private void Update()
@@ -52,6 +60,7 @@ public class pause : MonoBehaviour
     public void pauseButton()
     {
         PublicData.pause = !PublicData.pause;
+        PublicData.OnPause?.Invoke(PublicData.pause);
         PauseMenu.SetActive(!PauseMenu.activeSelf);
     }
 
