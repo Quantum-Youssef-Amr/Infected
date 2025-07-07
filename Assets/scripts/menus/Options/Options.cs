@@ -34,10 +34,11 @@ public class Options : MonoBehaviour
         //Audio
         MusicSlider.value = PublicData.setting.Music;
         Music.sprite = MusicSlider.value > -80 ? sprites[0] : sprites[1];
+        changeMusicVolume(PublicData.setting.Music);
 
         SfxSlider.value = PublicData.setting.Sfx;
         sfx.sprite = SfxSlider.value > -80 ? sprites[2] : sprites[3];
-
+        changeSfxVolume(PublicData.setting.Sfx);
 
         MusicSlider.onValueChanged.AddListener((_) =>
         {

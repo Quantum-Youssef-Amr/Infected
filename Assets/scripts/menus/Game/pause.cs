@@ -40,7 +40,7 @@ public class pause : MonoBehaviour
 
     private void ControlsVis(bool s)
     {
-        controls.SetActive(!s);
+        if(PublicData.platform.PlatformType == PlatformType.Mobile) controls.SetActive(!s);
     }
 
     private void Update()
