@@ -7,7 +7,7 @@ public class UpgradeSystem : MonoBehaviour
 {
     [SerializeField] private int CardNum = 1, MaxCards = 4;
     [SerializeField] private List<Card> cards = new List<Card>();
-    [SerializeField] private GameObject UpgradeUi, UpgradeCard, upgradeScreen;
+    [SerializeField] private GameObject UpgradeUi, UpgradeCard, upgradeScreen, AndriodUI;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject bult;
     [SerializeField] private Spowner spowner;
@@ -97,6 +97,7 @@ public class UpgradeSystem : MonoBehaviour
         }
         UpgradeUi.SetActive(true);
         upgradeScreen.SetActive(true);
+        if(PublicData.platform.PlatformType == PlatformType.Mobile)AndriodUI.SetActive(false);
         transform.GetChild(0).gameObject.SetActive(false);
     }
 
@@ -163,9 +164,9 @@ public class UpgradeSystem : MonoBehaviour
         }
 
         upgradeScreen.SetActive(false);
+        if(PublicData.platform.PlatformType == PlatformType.Mobile)AndriodUI.SetActive(true);
         transform.GetChild(0).gameObject.SetActive(true);
         _selected = null;
-        PublicData.OnUpgrade?.Invoke(false);
     }
 
 }

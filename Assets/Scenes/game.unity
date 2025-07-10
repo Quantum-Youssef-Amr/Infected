@@ -326,7 +326,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 3953650026110270662}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 10
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -336,7 +336,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: -1
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &20050972
 RectTransform:
@@ -450,7 +450,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 1
   m_Sprite: {fileID: 558659571, guid: 5921d89ffc5f4f442abea9797dbc0e94, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -893,7 +893,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 434.881, y: -50}
+  m_AnchoredPosition: {x: 434.88098, y: -50}
   m_SizeDelta: {x: 256.58734, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &370605671
@@ -2800,7 +2800,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 3953650026110270662}
-  m_PlaneDistance: 10
+  m_PlaneDistance: 5
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -2867,6 +2867,7 @@ MonoBehaviour:
   UpgradeUi: {fileID: 487619058}
   UpgradeCard: {fileID: 5533486470198003950, guid: ffa0df3892c1f5b468e3aed5e378ea44, type: 3}
   upgradeScreen: {fileID: 1272296913}
+  AndriodUI: {fileID: 20050968}
   player: {fileID: 428464326}
   bult: {fileID: 2069627844275732094, guid: 621d6239d0bb00f42a45fb473802402d, type: 3}
   spowner: {fileID: 536312030}
@@ -5038,7 +5039,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1846422025, guid: 5921d89ffc5f4f442abea9797dbc0e94, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0

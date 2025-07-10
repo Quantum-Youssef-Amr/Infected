@@ -34,18 +34,15 @@ public class pause : MonoBehaviour
     void Start()
     {
         inputs.Player.Pause.performed += _ => { pauseButton(); };
-        PublicData.OnPause += s => ControlsVis(s);
-        PublicData.OnUpgrade += s => ControlsVis(s);
     }
 
-    private void ControlsVis(bool s)
+    private void ControlsVis(bool state)
     {
-        if(PublicData.platform.PlatformType == PlatformType.Mobile) controls.SetActive(!s);
+        if(PublicData.platform.PlatformType == PlatformType.Mobile) controls.SetActive(!state);
     }
 
     private void Update()
     {
-
         if (PlayerHealth.dead)
         {
             PublicData.gameover = true;
@@ -60,7 +57,7 @@ public class pause : MonoBehaviour
     public void pauseButton()
     {
         PublicData.pause = !PublicData.pause;
-        PublicData.OnPause?.Invoke(PublicData.pause);
+        ControlsVis(PublicData.pause);
         PauseMenu.SetActive(!PauseMenu.activeSelf);
     }
 

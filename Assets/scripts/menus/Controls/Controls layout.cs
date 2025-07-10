@@ -13,20 +13,23 @@ public class Controlslayout : MonoBehaviour
 
     public void setUp()
     {
-        if (PublicData.platform.PlatformType == PlatformType.PC)
+        switch (PublicData.platform.PlatformType)
         {
-            gameObject.SetActive(false);
-            return;
-        }
+            case PlatformType.PC:
+                gameObject.SetActive(false);
+                break;
 
-        transform.localScale = PublicData.setting.left_handed ? new Vector3(-1, 1, 1) : Vector3.one;
+            case PlatformType.Mobile:
+                transform.localScale = PublicData.setting.left_handed ? new Vector3(-1, 1, 1) : Vector3.one;
 
-        joystick.transform.localPosition = PublicData.setting.joystickLocation;
+                joystick.transform.localPosition = PublicData.setting.joystickLocation;
 
-        for (int i = 0; i < btns.Length; i++)
-        {
-            btns[i].transform.localPosition = PublicData.setting.btnsLocations[i];
-            btns[i].transform.localScale = PublicData.setting.btnsSize[i] * Vector3.one;
+                for (int i = 0; i < btns.Length; i++)
+                {
+                    btns[i].transform.localPosition = PublicData.setting.btnsLocations[i];
+                    btns[i].transform.localScale = PublicData.setting.btnsSize[i] * Vector3.one;
+                }
+                break;
         }
     }
 

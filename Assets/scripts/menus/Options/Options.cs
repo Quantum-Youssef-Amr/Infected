@@ -124,6 +124,8 @@ public class Options : MonoBehaviour
 
         PublicData.setting.btnsSize = _cl.getSizes();
 
+        FindAnyObjectByType<DataPersestantManager>().saveGame();
+
         ControlsInstance.SetActive(false);
         OptionsPanal.SetActive(true);
     } 

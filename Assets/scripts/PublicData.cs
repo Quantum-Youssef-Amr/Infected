@@ -15,11 +15,6 @@ public struct PublicData
     // manager objects
     public static Platform platform = new Platform(false);
     public static setting setting = new setting();
-
-    //events
-    public static Action<bool> OnPause;
-    public static Action<bool> OnUpgrade;
-    public static Action OnGameOver;
 }
 
 public class setting

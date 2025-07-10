@@ -86,5 +86,6 @@ public class SingltonSceneManager : MonoBehaviour, IDataPersestant
         data.btnsSize = PublicData.setting.btnsSize;
         data.joystickLocation = PublicData.setting.joystickLocation;
         data.holdTofire = PublicData.setting.holdtofire;
+        
     }
 }

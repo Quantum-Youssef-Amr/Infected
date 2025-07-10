@@ -45,7 +45,6 @@ public class Spowner : MonoBehaviour
         if (transform.childCount == 0 && _spownIndex == spowns.Count)
         {
             Upgrades();
-            PublicData.OnUpgrade?.Invoke(true);
 
             yield return new WaitUntil(() =>
             {
