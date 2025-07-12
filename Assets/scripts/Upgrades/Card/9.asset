@@ -15,7 +15,7 @@ MonoBehaviour:
   Title: one more
   image: {fileID: -2090036509, guid: 7d497b7e9a8ca2440a2b815ec4776866, type: 3}
   description: add 1 more card
-  Price: 20
   ablte: 5
   amount: 1
   adder: 1
+  ability: {fileID: 11400000, guid: 7a11dd3d2dc14c542b70dfdb17d86d26, type: 2}

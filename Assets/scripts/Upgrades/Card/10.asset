@@ -15,6 +15,7 @@ MonoBehaviour:
   Title: bird eye
   image: {fileID: -860024382, guid: 7d497b7e9a8ca2440a2b815ec4776866, type: 3}
   description: zoom out a little bit
-  ablte: 6
+  ablte: 7
   amount: 1.2
   adder: 0
+  ability: {fileID: 11400000, guid: ad96e525d2d010549946419a8f7577b1, type: 2}

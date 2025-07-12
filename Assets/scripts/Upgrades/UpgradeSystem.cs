@@ -27,6 +27,13 @@ public class UpgradeSystem : MonoBehaviour
         _pg = player.GetComponent<shooting>();
         _pm = player.GetComponent<PlayerMovement>();
         _bd = bult.GetComponent<bult>();
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+        GameObject.FindGameObjectWithTag("discriptaion").GetComponent<TextMeshProUGUI>().text = "";  //Null refrance exception !!!!
+=======
+>>>>>>> ae487d22575ff37bd61b88c72c26af3002a4f1ef
+>>>>>>> Stashed changes
     }
 
 
@@ -115,40 +122,51 @@ public class UpgradeSystem : MonoBehaviour
         switch (m_card.ablte)
         {
             case Card.power.damage:
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+                m_card.ability.ApplyAbility(_bd, m_card.amount, m_card.adder);
+=======
+>>>>>>> Stashed changes
                 switch (m_card.adder)
                 {
                     case true: _bd.Damage += m_card.amount; break;
                     case false: _bd.Damage *= m_card.amount; break;
                 }
+>>>>>>> ae487d22575ff37bd61b88c72c26af3002a4f1ef
                 break;
 
             case Card.power.GunSpeed:
-                switch (m_card.adder)
-                {
-                    case true: _pg.Cooldown -= m_card.amount; break;
-                    case false: _pg.Cooldown /= m_card.amount; break;
-                }
+                m_card.ability.ApplyAbility(_pg, m_card.amount, m_card.adder);
                 break;
 
             case Card.power.PlayerSpeed:
+<<<<<<< HEAD
+                m_card.ability.ApplyAbility(_pm, m_card.amount, m_card.adder);
+=======
                 switch (m_card.adder)
                 {
                     case true: _pm.TurningSpeed += m_card.amount; break;
                     case false: _pm.TurningSpeed *= m_card.amount; break;
                 }
+>>>>>>> ae487d22575ff37bd61b88c72c26af3002a4f1ef
                 break;
 
 
             case Card.power.money:
-                ViursAI.Value *= m_card.amount;
+                m_card.ability.ApplyAbility(ViursAI, m_card.amount, m_card.adder);
                 break;
 
             case Card.power.health:
+<<<<<<< HEAD
+                m_card.ability.ApplyAbility(_ph, m_card.amount, m_card.adder);
+=======
                 switch (m_card.adder)
                 {
                     case true: _ph.addhealth(m_card.amount); break;
                     case false: _ph.MaxHealth *= m_card.amount; break;
                 }
+>>>>>>> ae487d22575ff37bd61b88c72c26af3002a4f1ef
                 break;
 
             case Card.power.upgrade:
@@ -156,11 +174,25 @@ public class UpgradeSystem : MonoBehaviour
                 break;
 
             case Card.power.zoom:
-                Camera.main.orthographicSize *= m_card.amount;
+                m_card.ability.ApplyAbility(Camera.main, m_card.amount, m_card.adder);
                 break;
 
+<<<<<<< Updated upstream
             case Card.power.MaxHealth: _ph.MaxHealth += m_card.amount; break;
             case Card.power.bolts: _pg.bolts += 2 * _pg.boltsInRound; break;
+=======
+<<<<<<< HEAD
+            case Card.power.MaxHealth:
+                m_card.ability.ApplyAbility(_ph, m_card.amount, m_card.adder); 
+                break;
+            case Card.power.bolts: 
+                m_card.ability.ApplyAbility(_pg, 2, m_card.adder);  
+                break;
+=======
+            case Card.power.MaxHealth: _ph.MaxHealth += m_card.amount; break;
+            case Card.power.bolts: _pg.bolts += 2 * _pg.boltsInRound; break;
+>>>>>>> ae487d22575ff37bd61b88c72c26af3002a4f1ef
+>>>>>>> Stashed changes
         }
 
         upgradeScreen.SetActive(false);
