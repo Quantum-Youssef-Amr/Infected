@@ -18,3 +18,4 @@ MonoBehaviour:
   ablte: 0
   amount: 2
   adder: 0
+  ability: {fileID: 11400000, guid: e48338e8c2b3f104b9534f1904de136f, type: 2}

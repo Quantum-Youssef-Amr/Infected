@@ -11,6 +11,7 @@ public class Card : ScriptableObject
     public power ablte;
     public float amount;
     public bool adder = false;
+    public AbilityInterface ability;
 
 }
 
