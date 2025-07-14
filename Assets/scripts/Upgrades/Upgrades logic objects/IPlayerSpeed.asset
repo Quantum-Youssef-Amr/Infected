@@ -9,12 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec268dfa94847bc4eac958e1b5df866c, type: 3}
-  m_Name: 8
+  m_Script: {fileID: 11500000, guid: 3fdb6e9d78fc1e74fbebdd311d4146be, type: 3}
+  m_Name: IPlayerSpeed
   m_EditorClassIdentifier: 
-  Title: strong as a rock
-  image: {fileID: -8096500043677648198, guid: 7d497b7e9a8ca2440a2b815ec4776866, type: 3}
-  description: add 10 health to max health
-  ablte: 5
-  amount: 10
-  adder: 1

@@ -42,6 +42,7 @@ public class playerHealth : Health
         deathsound.Play();
         StartCoroutine(GetComponent<CameraShake>().Camerashake());
         PublicData.gameover = true;
+        PublicData.OnGameOver?.Invoke();
     }
 
     public void addhealth(float health)

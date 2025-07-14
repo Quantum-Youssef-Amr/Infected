@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec268dfa94847bc4eac958e1b5df866c, type: 3}
-  m_Name: 3
+  m_Name: 7 1
   m_EditorClassIdentifier: 
-  Title: responsive
-  image: {fileID: -7415955986125602904, guid: 7d497b7e9a8ca2440a2b815ec4776866, type: 3}
-  description: increase your turning speed a little bit
-  ablte: 1
-  amount: 1.5
-  adder: 0
+  Title: warm hearted
+  image: {fileID: 2364552672744995599, guid: 7d497b7e9a8ca2440a2b815ec4776866, type: 3}
+  description: add 20 health points
+  ability: 4
+  amount: 20
+  adder: 1

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec268dfa94847bc4eac958e1b5df866c, type: 3}
-  m_Name: 11
+  m_Name: 2
   m_EditorClassIdentifier: 
-  Title: bolts
-  image: {fileID: -686040022, guid: 44208daf7b3c9934cb6c319869103280, type: 3}
-  description: add 2 more clips
-  ablte: 8
-  amount: 2
+  Title: Mini gun
+  image: {fileID: -2922113337684369405, guid: 7d497b7e9a8ca2440a2b815ec4776866, type: 3}
+  description: increase your shooting speed a little bit
+  ability: 2
+  amount: 1.5
   adder: 0

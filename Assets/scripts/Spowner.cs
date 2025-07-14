@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using System.Threading.Tasks;
 public class Spowner : MonoBehaviour
 {
     public static int killed;
@@ -20,6 +21,7 @@ public class Spowner : MonoBehaviour
     {
         _mc = Camera.main;
         Startwave();
+        PublicData.OnUpgradeEnd += UpgradesEnded;
     }
 
     void Update()
@@ -80,7 +82,12 @@ public class Spowner : MonoBehaviour
     public void Upgrades()
     {
         PublicData.upgradeing = true;
-        upgradeSystem.ShowUpgrades();
+        PublicData.OnUpgradeBegin?.Invoke();
+    }
+
+    public void UpgradesEnded()
+    {
+        PublicData.upgradeing = false;
     }
 
     private void SetWaveData()

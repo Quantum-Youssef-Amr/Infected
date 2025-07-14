@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec268dfa94847bc4eac958e1b5df866c, type: 3}
-  m_Name: 5
+  m_Name: 4
   m_EditorClassIdentifier: 
-  Title: Stonks
-  image: {fileID: 3929718611160277314, guid: 7d497b7e9a8ca2440a2b815ec4776866, type: 3}
-  description: double the score drop
-  ablte: 3
-  amount: 2
+  Title: Rocket
+  image: {fileID: 5610456433865955097, guid: 7d497b7e9a8ca2440a2b815ec4776866, type: 3}
+  description: increase the bullet speed a little bit
+  ability: 9
+  amount: 1.1
   adder: 0

@@ -13,11 +13,11 @@ public class shooting : MonoBehaviour
 
     private Transform _t;
     private Camera _main;
-    public int _bolts_shoot {get; set;}
+    public int _bolts_shoot { get; set; }
     private Coroutine co;
     public bool _canshoot = false, _reloading = false;
 
-    public int Rate { get { return (int)(1f / Cooldown); }}
+    public int Rate { get { return (int)(1f / Cooldown); } }
 
     #region inputs
     private Input_system inputs;
@@ -44,7 +44,7 @@ public class shooting : MonoBehaviour
     void Start()
     {
         inputs.Player.Fire.performed += _ => { Fire(); };
-        inputs.Player.Reloud.performed += _ => { if(co == null) StartCoroutine(reload()); };
+        inputs.Player.Reloud.performed += _ => { if (co == null) StartCoroutine(reload()); };
     }
 
     void Update()
@@ -61,14 +61,15 @@ public class shooting : MonoBehaviour
         if (co == null && _bolts_shoot >= boltsInRound) co = StartCoroutine(reload());
     }
 
-    public void Fire(){
+    public void Fire()
+    {
         if (PublicData.pause || PublicData.gameover || _bolts_shoot >= boltsInRound) return;
         if (co == null) co = StartCoroutine(Shoot());
     }
 
     private IEnumerator Shoot()
     {
-        if(_canshoot && !PublicData.upgradeing)
+        if (_canshoot && !PublicData.upgradeing)
         {
             _canshoot = false;
             _bolts_shoot++;
@@ -80,17 +81,23 @@ public class shooting : MonoBehaviour
         co = null;
     }
 
-    private IEnumerator reload(){
+    private IEnumerator reload()
+    {
         if (_bolts_shoot != 0)
         {
             _reloading = true;
             _canshoot = false;
 
             bolts -= boltsInRound;
-            _bolts_shoot=0;
+            _bolts_shoot = 0;
         }
         yield return null;
         co = null;
+    }
+
+    public GameObject getBult()
+    {
+        return Bult;
     }
 
 }

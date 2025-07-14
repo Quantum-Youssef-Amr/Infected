@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec268dfa94847bc4eac958e1b5df866c, type: 3}
-  m_Name: 7 1
+  m_Name: 5
   m_EditorClassIdentifier: 
-  Title: warm hearted
-  image: {fileID: 2364552672744995599, guid: 7d497b7e9a8ca2440a2b815ec4776866, type: 3}
-  description: add 20 health points
-  ablte: 4
-  amount: 20
-  adder: 1
+  Title: Stonks
+  image: {fileID: 3929718611160277314, guid: 7d497b7e9a8ca2440a2b815ec4776866, type: 3}
+  description: double the score drop
+  ability: 3
+  amount: 2
+  adder: 0

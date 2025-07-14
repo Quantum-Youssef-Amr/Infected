@@ -2868,11 +2868,7 @@ MonoBehaviour:
   UpgradeCard: {fileID: 5533486470198003950, guid: ffa0df3892c1f5b468e3aed5e378ea44, type: 3}
   upgradeScreen: {fileID: 1272296913}
   AndriodUI: {fileID: 20050968}
-  player: {fileID: 428464326}
-  bult: {fileID: 2069627844275732094, guid: 621d6239d0bb00f42a45fb473802402d, type: 3}
-  spowner: {fileID: 536312030}
-  ViursAI: {fileID: 8546053010292959024, guid: 45478ee9e2d89c4478259b0379c63a11, type: 3}
-  _selected: {fileID: 0}
+  linker: {fileID: 11400000, guid: 135b2adb05978364fb66bac3c1024696, type: 2}
 --- !u!114 &962248763
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec268dfa94847bc4eac958e1b5df866c, type: 3}
-  m_Name: 7 2
+  m_Name: 9
   m_EditorClassIdentifier: 
-  Title: warm hearted
-  image: {fileID: 2364552672744995599, guid: 7d497b7e9a8ca2440a2b815ec4776866, type: 3}
-  description: add 40 health points
-  ablte: 4
-  amount: 40
+  Title: one more
+  image: {fileID: -2090036509, guid: 7d497b7e9a8ca2440a2b815ec4776866, type: 3}
+  description: add 1 more card
+  ability: 6
+  amount: 1
   adder: 1

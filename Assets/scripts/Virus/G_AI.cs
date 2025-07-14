@@ -6,7 +6,6 @@ public class G_AI : MonoBehaviour
     [SerializeField] protected float Speed, rotationSpeed;
     [SerializeField] public float Damage;
     public float Value = 10f;
-
     private GameObject _player;
     private Transform _pt, _t;
     protected float _rotation;

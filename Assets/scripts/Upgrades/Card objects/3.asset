@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec268dfa94847bc4eac958e1b5df866c, type: 3}
-  m_Name: 10
+  m_Name: 3
   m_EditorClassIdentifier: 
-  Title: bird eye
-  image: {fileID: -860024382, guid: 7d497b7e9a8ca2440a2b815ec4776866, type: 3}
-  description: zoom out a little bit
-  ablte: 6
-  amount: 1.2
+  Title: responsive
+  image: {fileID: -7415955986125602904, guid: 7d497b7e9a8ca2440a2b815ec4776866, type: 3}
+  description: increase your turning speed a little bit
+  ability: 1
+  amount: 1.5
   adder: 0
